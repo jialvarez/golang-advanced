@@ -1,0 +1,68 @@
+\documentclass{beamer}
+\usepackage[spanish]{babel}
+\usepackage{beamerthemeshadow}
+\usepackage{pgf}
+\usepackage{eurosym}
+\usepackage{array}% http://ctan.org/pkg/array
+\usepackage{fontspec}
+\defaultfontfeatures{
+	Path = /usr/local/texlive/2017/texmf-dist/fonts/opentype/public/fontawesome/ }
+\usepackage{fontawesome}
+\usepackage{framed}
+\usepackage{verbatim}
+\newcolumntype{M}{>{\centering\arraybackslash}m{\dimexpr.25\linewidth-2\tabcolsep}}
+\usepackage{hyperref}
+\hypersetup{
+  breaklinks=true,
+  urlcolor=blue,
+}
+\usepackage{listings}
+\lstset{language=Go,basicstyle=\fontsize{8}{10}\selectfont\ttfamily}
+
+\usetheme{CambridgeUS}
+\usefonttheme{structurebold}
+
+
+\setbeamertemplate{itemize item}[triangle]
+
+\begin{document}
+
+
+\title{Golang}
+\subtitle{My journey trying to learn coding in Go:\\Tell me more}
+\author[Nacho Álvarez]{\texorpdfstring{Nacho Álvarez
+  \\ \faTwitter \hspace{5pt}@neonigma
+  \\ \faEnvelope \hspace{5pt}neonigma@gmail.com}{Author}}
+
+%\institute[Redsys]{\includegraphics[height=0.9cm]{imgs/redsys.jpg}}
+\date{\today}
+
+
+
+\frame{\centering \includegraphics[height=1.5cm]{imgs/goicon.png} \titlepage}
+
+\section[Índice]{}
+\frame{\tableofcontents}
+
+
+\input{whoami}
+\input{modules} % and import local modules
+\input{deepequal} % reflect deep equal
+\input{tdd} % TDD + coverage + helpers + property based tests + benchmarks
+\input{errors} % error treatments
+\input{context} % package to manage long-running processes
+\input{mocking}
+\input{di}
+\input{reflection}
+\input{filesystem}
+\input{webservices}
+% go doc
+
+
+
+
+% Incoming requests to a server should create a Context, and outgoing calls to servers should accept a Context. The chain of function calls between them must propagate the Context, optionally replacing it with a derived Context created using WithCancel, WithDeadline, WithTimeout, or WithValue. When a Context is canceled, all Contexts derived from it are also canceled.
+
+% At Google, we require that Go programmers pass a Context parameter as the first argument to every function on the call path between incoming and outgoing requests. This allows Go code developed by many different teams to interoperate well. It provides simple control over timeouts and cancelation and ensures that critical values like security credentials transit Go programs properly.
+
+\end{document}
